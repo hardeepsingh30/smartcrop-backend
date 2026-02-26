@@ -23,13 +23,15 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://farm2future-frontend.vercel.app", 
+        "http://localhost:3000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["Content-Disposition"]
 )
-
 # =====================================================
 # 🔐 AUTH CONFIG
 # =====================================================
@@ -428,4 +430,5 @@ def get_pir_logs(device_id: str, user=Depends(verify_token)):
         {"device_id": device_id, "pir": 1}, 
         {"_id": 0}
     ).sort("timestamp", -1).limit(10))
+
     return logs
