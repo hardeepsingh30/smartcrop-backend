@@ -19,18 +19,20 @@ import time
 # =====================================================
 # 🚀 FASTAPI INIT
 # =====================================================
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
 
+# THE PERFECT CORS POLICY
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://farm2future-frontend.vercel.app", 
+        "https://farm2future-frontend.vercel.app",
         "http://localhost:3000"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["Content-Disposition"]
 )
 # =====================================================
 # 🔐 AUTH CONFIG
@@ -432,3 +434,4 @@ def get_pir_logs(device_id: str, user=Depends(verify_token)):
     ).sort("timestamp", -1).limit(10))
 
     return logs
+
