@@ -4,9 +4,10 @@ pymongo
 certifi
 pydantic
 passlib
-bcrypt
+bcrypt==4.0.1
 python-jose
 fpdf
 pytz
 requests
 setuptools
+
